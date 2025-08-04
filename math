@@ -1,0 +1,63 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double sum(double num1,double num2,int decision);
+double quotient(double num1,double num2,int decision);
+double product(double num1,double num2,int decision);
+double min(double num1,double num2,int decision);
+int main()
+{
+	double num1 ,num2;
+	int decision;
+	
+	cout<<" Enter a number: ";
+	cin>>num1;
+	cout<<" Enter a number: ";
+	cin>>num2;
+	cout<<"  choices:\n  1(+)\n  2(-)\n  3(×)\n  4(÷)"<<endl;
+	cout<<"  decision: ";
+	cin>>decision;
+	bool done=false;
+	while(!done){
+	switch(decision){
+	case 1:
+	sum(num1,num2,decision);
+	break;
+	case 2:
+	min(num1,num2,decision);
+    break;
+	case 3:
+	product(num1,num2,decision);
+    break;
+	case 4:
+	quotient(num1,num2, decision);
+    break;
+	default:
+	cout<<  "error not in the choices ";
+	bool done=false;
+	break;
+	}
+}
+	return 0;
+}
+double sum(double num1,double num2,int decision){
+double sum;
+sum=num1+num2;
+cout<<" "<<num1<<" + "<<num2<<" = "<<sum<<endl;
+return decision;}
+
+double quotient(double num1,double num2,int decision){
+double quotient;
+quotient=num1/num2;
+cout<<"  "<<num1<<" ÷ "<<num2<<" = "<<quotient<<endl;}
+
+double product(double num1,double num2,int decision){
+double product;
+product=num1*num2;
+cout<<"  "<<num1<<" × "<<num2<<" = "<<product<<endl;}
+
+double min(double num1,double num2,int decision){
+double minus;
+minus=num1-num2;
+cout<<"  "<<num1<<" - "<<num2<<" = "<<minus<<endl;}

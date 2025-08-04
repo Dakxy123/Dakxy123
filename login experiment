@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    cout<<"Login Your Account"<<endl;
+    string name,initial,surname,fullname;
+    
+    cout<<"Enter your name:\n";
+    getline(cin, name);
+    
+    cout<<"Enter your middle initial: ";
+    cin>>initial;
+    
+    cout<<"Enter your surname: ";
+    cin>>surname;
+    
+    fullname=name+" "+initial+". "+surname;
+    
+    cout<<endl<<endl<<"-----------------------------------------------"<<endl;
+    cout<<"profile name:\n"<<fullname<<endl;
+    while(true){
+    string password;
+    cout<<"Enter password:\n";
+   cin>>password;
+   
+   if(password==password){
+    cout<<"------------------------------------------------------------\n"<<"\t\tSUCCESS!!\n"<<"------------------------------------------------------------\n";
+    break;
+   }
+    else if(password!=password){
+        cout<<"------------------------------------------------------------\n"<<"WRONG PASSWORD!\n"<<"------------------------------------------------------------\n";
+    }
+    else{
+        cout<<"------------------------------------------------------------"<<endl;
+        cout<<"ERROR!!!!!!!!!!!!";
+        cout<<"------------------------------------------------------------"<<endl;
+    }
+    }
+    
+}
+

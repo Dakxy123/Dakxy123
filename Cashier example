@@ -1,0 +1,69 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+using namespace std;
+
+struct Item {
+    string name;
+    int quantity;
+    double price;
+    double total;
+};
+
+void printLine(char character, int width) {
+    for (int i = 0; i < width; ++i) {
+        cout << character;
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<Item> items;
+    double grandTotal = 0.0;
+
+    cout << "--------------------------------------------------" << endl;
+    cout << "Welcome to Dakxy's Convenient Store" << endl;
+    cout << "--------------------------------------------------" << endl;
+
+    while (true) {
+        Item newItem;
+        cout << "Enter item name (or 'done' to finish): "<<endl;
+        getline(cin, newItem.name);
+
+        if (newItem.name == "done") {
+            break;
+        }
+
+        cout << "Enter quantity: ";
+        cin >> newItem.quantity;
+
+        cout << "Enter price per item: $";
+        cin >> newItem.price;
+
+        newItem.total = newItem.quantity * newItem.price;
+        grandTotal += newItem.total;
+
+        items.push_back(newItem);
+
+        cin.ignore(); 
+    }
+
+    cout << "--------------------------------------------------" << endl;
+    cout << "Thank you for shopping with us!" << endl;
+    
+    cout << "--------------------------------------------------" << endl;
+    cout << "Receipt:" << endl;
+
+    cout << left << setw(30) << "Item" << setw(10) << "Amount" << setw(10) << "Price" << setw(10) << "Total" << endl;
+
+    for (const Item &item : items) {
+        cout << left << setw(30) << item.name << setw(10) << item.quantity << fixed << setprecision(2) << setw(10) << item.price
+             << setw(10) << item.total << endl;
+    }
+
+    cout << "--------------------------------------------------" << endl;
+    cout << "Total: $" << fixed << setprecision(2) << grandTotal << endl;
+    cout << "--------------------------------------------------" << endl;
+
+    return 0;
+}

@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+#define b 2
+#define c 3
+#define d 4
+#define e 5
+#define f 6
+#define g 7
+#define h 8
+#define i 9
+#define j 10
+#define k 1
+int main(){
+    for(int a=1;a<=10;a++){
+         int result= k*a;
+        cout<<k<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= b*a;
+        cout<<b<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= c*a;
+         cout<<c<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= d*a;
+         cout<<d<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= e*a;
+        cout<<e<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= f*a;
+         cout<<f<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= g*a;
+         cout<<g<<"×"<<a<<"="<<result<<endl;
+    }
+     cout<<"--------------------------------------------\n";
+    for( int a=1;a<=10;a++){
+         int result= h*a;
+         cout<<h<<"×"<<a<<"="<<result<<endl;
+    }   
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= i*a;
+         cout<<i<<"×"<<a<<"="<<result<<endl;
+    }
+    cout<<"--------------------------------------------\n";
+    for(int a=1;a<=10;a++){
+         int result= j*a;
+         cout<<j<<"×"<<a<<"="<<result<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Function to perform modular exponentiation
+long long power(long long base, long long exp, long long mod) {
+    long long result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1) {
+            result = (result * base) % mod;
+        }
+        base = (base * base) % mod;
+        exp /= 2;
+    }
+    return result;
+}
+
+// Function to generate shared secret
+long long diffieHellman(long long p, long long g, long long privateKey) {
+    return power(g, privateKey, p);
+}
+
+int main() {
+    long long p, g, privateKeyA, privateKeyB;
+    
+    cout << "=== Diffie-Hellman Key Exchange ===" << endl;
+    cout << "Enter a large prime number (p): ";
+    cin >> p;
+    cout << "Enter a primitive root modulo p (g): ";
+    cin >> g;
+    
+    cout << "Alice, enter your private key (a): ";
+    cin >> privateKeyA;
+    cout << "Bob, enter your private key (b): ";
+    cin >> privateKeyB;
+
+    long long publicKeyA = diffieHellman(p, g, privateKeyA);
+    long long publicKeyB = diffieHellman(p, g, privateKeyB);
+    
+    cout << "Alice's public key (A): " << publicKeyA << endl;
+    cout << "Bob's public key (B): " << publicKeyB << endl;
+
+    long long sharedSecretA = diffieHellman(p, publicKeyB, privateKeyA);
+    long long sharedSecretB = diffieHellman(p, publicKeyA, privateKeyB);
+
+    cout << "Alice's shared secret: " << sharedSecretA << endl;
+    cout << "Bob's shared secret: " << sharedSecretB << endl;
+    
+    if (sharedSecretA == sharedSecretB) {
+        cout << "The shared secrets match!" << endl;
+    } else {
+        cout << "The shared secrets do not match!" << endl;
+    }
+    
+    return 0;
+}

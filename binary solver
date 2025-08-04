@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int pow(int base, int exponent)
+{
+    int result = 1;
+    for (int i = 0; i < exponent; i++)
+    {
+        result *= base;
+    }
+    return result;
+}
+
+int main()
+{
+    int binary[8] = {};
+    
+    cout << "Enter binary number (8 bits): ";
+    
+    for (int i = 0; i < 8; i++)
+    {
+        cin >> binary[i];
+        if (binary[i] != 0 && binary[i] != 1)
+        {
+            cout << "Invalid binary digit. Enter either 0 or 1." << endl;
+            return 1; // Exit with an error code
+        }
+    }
+
+    int decimal = 0;
+    for (int i = 0; i < 8; i++)
+    {
+        decimal += binary[i] * pow(2, i);
+    }
+
+    cout << "Decimal equivalent: " << decimal << endl;
+
+    return 0;
+}

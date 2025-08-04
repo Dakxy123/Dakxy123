@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+	while(true){
+	    double b,result;
+	    cout<<"Enter a Multiplicant: ";
+	    cin>>b;
+	    
+	    if(b<=100){
+	    for(int a=0;a<=10;a++){
+	        result = a*b;
+	        cout<<a<<"×"<<b<<"="<<result<<endl;
+	    }
+	    cout<<"------------------------------------------------------"<<endl;
+	    
+	    }
+
+    else {
+	            cout<<"Number is bigger than the limit!";
+	            break;
+	        }
+	}//while
+}//int main

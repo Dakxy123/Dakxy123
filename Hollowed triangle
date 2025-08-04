@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	for(int a=1;a<=6;a++){
+	    for(int b=1;b<=6-a;b++){
+	        cout<<" ";
+	    }
+	    if(a==1||a==6){
+	        for(int b=1;b<=a;b++){
+	    cout<<"0 ";
+	        }
+	    }
+	    else{
+	    cout<<"0";
+	    for(int c=1;c<=2*a-3;c++){
+	        cout<<" ";
+	    }
+	    cout<<"0";
+	    }
+	    cout<<endl;
+	}
+	    return 0;
+}

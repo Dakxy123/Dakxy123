@@ -1,0 +1,275 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+
+using namespace std;
+
+const int MathSubject = 1;
+const int EnglishSubject = 2;
+const int FilipinoSubject = 3;
+const int ScienceSubject = 4;
+const int ExitOption = 6;
+
+struct SubjectGrade {
+    string subject;
+    int grade;
+};
+
+struct Student {
+    string ln;  // Learner's Number
+    string name;
+    int age;
+    string sex;
+    vector<SubjectGrade> grades;
+};
+
+vector<Student> students;
+
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    // For non-Windows platforms, consider other methods for clearing the screen
+    cout << "\033[2J\033[H"; // ANSI escape code for clearing the screen
+#endif
+}
+
+void addStudent() {
+    Student newStudent;
+    cout << "Enter LN (Learner's Number): ";
+    cin >> newStudent.ln;
+
+    // Check for duplicate LN
+    for (const auto& student : students) {
+        if (student.ln == newStudent.ln) {
+            cout << "Student with the same LN already exists. Choose another LN.\n";
+            return;
+        }
+    }
+
+    cout << "Enter Name: ";
+    cin.ignore();
+    getline(cin, newStudent.name);
+    cout << "Enter Age: ";
+    while (!(cin >> newStudent.age) || newStudent.age <= 0) {
+        cout << "Invalid age. Please enter a positive number: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    cout << "Enter Sex: ";
+    cin >> newStudent.sex;
+
+    students.push_back(newStudent);
+    cout << "Student added successfully!\n";
+}
+void editStudentGrade() {
+    if (students.empty()) {
+        cout << "No students in the system. Add a student first.\n";
+        return;
+    }
+
+    cout << "Enter LN (Learner's Number): ";
+    string ln;
+    cin >> ln;
+
+    for (auto& student : students) {
+        if (student.ln == ln) {
+            cout << "Enter the subject to edit:\n";
+            cout << "<" << MathSubject << "> Math\n<" << EnglishSubject << "> English\n<" << FilipinoSubject << "> Filipino\n<" << ScienceSubject << "> Science\n";
+            cout << "Enter the subject number: ";
+            int subject;
+            while (!(cin >> subject) || subject < 1 || subject > 4) {
+                cout << "Invalid subject number. Please enter a number between 1 and 4: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            auto it = find_if(student.grades.begin(), student.grades.end(),
+                              [subject](const SubjectGrade& grade) { return grade.subject == (subject == MathSubject ? "Math" : (subject == EnglishSubject ? "English" : (subject == FilipinoSubject ? "Filipino" : "Science"))); });
+
+            if (it != student.grades.end()) {
+                cout << "Enter the new grade for " << it->subject << ": ";
+                while (!(cin >> it->grade) || it->grade < 0 || it->grade > 100) {
+                    cout << "Invalid grade. Please enter a number between 0 and 100: ";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+                cout << "Grade updated successfully!\n";
+            } else {
+                cout << "Subject not found in student's grades.\n";
+            }
+
+            return;
+        }
+    }
+
+    cout << "Student not found.\n";
+}
+
+void inputGrade() {
+    if (students.empty()) {
+        cout << "No students in the system. Add a student first.\n";
+        return;
+    }
+
+    cout << "Enter LN (Learner's Number): ";
+    string ln;
+    cin >> ln;
+
+    for (auto& student : students) {
+        if (student.ln == ln) {
+            cout << "Subjects:\n";
+            cout << "<" << MathSubject << "> Math\n<" << EnglishSubject << "> English\n<" << FilipinoSubject << "> Filipino\n<" << ScienceSubject << "> Science\n";
+            cout << "Enter the subject number: ";
+            int subject;
+            while (!(cin >> subject) || subject < 1 || subject > 4) {
+                cout << "Invalid subject number. Please enter a number between 1 and 4: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            SubjectGrade newGrade;
+            switch (subject) {
+                case MathSubject:
+                    newGrade.subject = "Math";
+                    break;
+                case EnglishSubject:
+                    newGrade.subject = "English";
+                    break;
+                case FilipinoSubject:
+                    newGrade.subject = "Filipino";
+                    break;
+                case ScienceSubject:
+                    newGrade.subject = "Science";
+                    break;
+            }
+
+            cout << "Enter the grade for " << newGrade.subject << ": ";
+            while (!(cin >> newGrade.grade) || newGrade.grade < 0 || newGrade.grade > 100) {
+                cout << "Invalid grade. Please enter a number between 0 and 100: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            student.grades.push_back(newGrade);
+            cout << "Grade added successfully!\n";
+            return;
+        }
+    }
+
+    cout << "Student not found.\n";
+}
+
+void showStudentGrades() {
+    if (students.empty()) {
+        cout << "No students in the system. Add a student first.\n";
+        return;
+    }
+
+    cout << "Enter LN (Learner's Number): ";
+    string ln;
+    cin >> ln;
+
+    for (const auto& student : students) {
+        if (student.ln == ln) {
+            cout << "\nStudent Grades for " << student.name << ":\n";
+
+            for (const auto& grade : student.grades) {
+                cout << grade.subject << ": " << grade.grade << endl;
+            }
+
+            double average = 0.0;
+            if (!student.grades.empty()) {
+                for (const auto& grade : student.grades) {
+                    average += grade.grade;
+                }
+                average /= student.grades.size();
+            }
+
+            cout << "Average: " << fixed << setprecision(2) << average << "\n";
+            return;
+        }
+    }
+
+    cout << "Student not found.\n";
+}
+
+void showAllGrades() {
+    if (students.empty()) {
+        cout << "No students in the system. Add a student first.\n";
+        return;
+    }
+
+    cout << "\nAll Student Grades:\n";
+    cout << setw(4) << "LN" << setw(20) << "Name" << setw(7) << "Math" << setw(7) << "Eng" << setw(7) << "Fil" << setw(7) << "Sci" << setw(7) << "Ave" << "\n";
+    cout << setfill('-') << setw(55) << "\n" << setfill(' ');
+
+    for (const auto& student : students) {
+        cout << setw(4) << student.ln << setw(20) << student.name << setw(7);
+
+        for (int subject = MathSubject; subject <= ScienceSubject; ++subject) {
+            auto it = find_if(student.grades.begin(), student.grades.end(),
+                              [subject](const SubjectGrade& grade) { return grade.subject == (subject == MathSubject ? "Math" : (subject == EnglishSubject ? "English" : (subject == FilipinoSubject ? "Filipino" : "Science"))); });
+
+            if (it != student.grades.end()) {
+                cout << it->grade;
+            } else {
+                cout << "N/A";
+            }
+
+            cout << setw(7);
+        }
+
+        double average = 0.0;
+        if (!student.grades.empty()) {
+            for (const auto& grade : student.grades) {
+                average += grade.grade;
+            }
+            average /= student.grades.size();
+        }
+
+        cout << fixed << setprecision(2) << average << "\n";
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        clearScreen();
+        cout << "\n====================\nSchool Records Program\n====================\n";
+        cout << "1. Add Student\n2. Input Student's Grade\n3. Edit Student's Grade\n4. Show Student's Grades\n5. Show All Grades\n6. Exit\n";
+        cout << "Enter your choice: ";
+        while (!(cin >> choice) || choice < 1 || choice > ExitOption) {
+            cout << "Invalid choice. Please enter a number between 1 and " << ExitOption << ": ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        switch (choice) {
+            case 1:
+                addStudent();
+                break;
+            case 2:
+                inputGrade();
+                break;
+            case 3:
+                editStudentGrade();
+                break;
+            case 4:
+                showStudentGrades();
+                break;
+            case 5:
+                showAllGrades();
+                break;
+            case ExitOption:
+                cout << "Exiting the School Records Program. Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice. Try again.\n";
+        } 
+    } while (choice != ExitOption);
+
+    return 0;
+}

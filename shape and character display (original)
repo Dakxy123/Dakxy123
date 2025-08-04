@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+    double square = 10;
+    double rectangle = 15;
+    double triangle = 10;
+    string shape;
+
+    do {
+        cout << "Shape and Character Displayer" << endl;
+        cout << "Options:" << endl;
+        cout << "<1> Square" << endl;
+        cout << "<2> Rectangle" << endl;
+        cout << "<3> Triangle" << endl;
+        cout << "Choose a shape: ";
+        cin >> shape;
+
+        if (shape == "1") {
+            cout << "Select any Character: ";
+            cin >> shape;
+            cout << "\n";
+            for (int i = 0; i < square; i++) {
+                for (int j = 0; j < square; j++) {
+                    cout << " " << shape;
+                }
+                cout << endl;
+            }
+            cout << "-------------------------------------\n\ta SQUARE!!"<<endl<<endl;
+        } else if (shape == "2") {
+            cout << "Select any Character: ";
+            cin >> shape;
+            cout << "\n";
+            for (int a = 0; a < rectangle; a++) {
+                for (int h = 0; h < rectangle; h++) {
+                    cout << " " << shape;
+                }
+                cout << endl;
+            }
+            cout << "-------------------------------------\n\ta RECTANGLE!!"<<endl<<endl;
+        } else if (shape == "3") {
+            cout << "Select any Character: ";
+            cin >> shape;
+            cout << "\n";
+            for (int k = 0; k <= triangle; k++) {
+                for (int y = 0; y <= triangle - k; y++) {
+                    cout << " ";
+                }
+                for (int g = 1; g <= 1 * k - 1; g++) {
+                    cout << " " << shape;
+                }
+                cout << endl;
+            }
+            cout << "--------------------------------------\n\ta TRIANGLE!!"<<endl<<endl;
+        }     	
+		else if(shape != "1" || shape != "2" || shape != "3") 
+	cout<<"*WARNING* Invalid response. Press 1 to restart: ";
+	cin>>shape;
+	system("cls");
+		
+  }while(shape == "1");
+  
+}

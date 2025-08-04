@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int number[10];
+	double sum, average;
+	double max=number[0],min=number[0];
+	for(int i=0;i<10;i++){
+	    cout<<" enter number "<<i+1<<": ";
+	    cin>>number[i];
+	    system("cls");
+	}
+	for(int i=0;i<10;i++){
+	    cout<<" you've entered: "
+	    <<number[i]<<endl;
+	    sum+=number [i];
+	    average=sum/number[i];
+	 for(int i=0;i<10;i++){
+	    if(number[i]>max){
+	        max=number[i];
+	    }
+        else if(number[i]<min){
+	        min=number[i];
+	    }
+	  }
+	}
+cout<<" sum: "<<sum<<endl;
+cout<<" average: "<<average<<endl;
+cout<<" max: "<<max<<endl;
+cout<<" min: "<<min<<endl;
+
+}

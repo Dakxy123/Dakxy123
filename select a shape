@@ -1,0 +1,80 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main(){
+	cout<<"Select a shape\n";
+	int shape;
+	cout<<"<1> circle \n<2> square \n<3> triangle \n<4> rectangle\n";
+
+	while(true){
+	    cout<<setfill('-')<<setw(60 )<<'-'<<endl;
+	    cout<<"Enter number of desired shape:\n"
+	            <<"(Enter ''5'' to exit')\n";
+	    cin>>shape;
+	
+	if(shape>4){
+	    cout<<"FINISHED !!";
+	    break;
+	}
+	
+	if(shape==1){
+	    cout<<"        * * * * *                 \n"
+        	    <<"    * *     *     * *         \n"
+        	    <<"  *         *         *     \n"
+        	    <<"  *         *         *     \n"
+	            <<"*           *           * \n"
+        	    <<"*           *           * \n"
+        	    <<"* * * * * * * * * * * * * \n"
+        	    <<"*           *           * \n"
+        	    <<"*           *           * \n"
+        	    <<"  *         *         *     \n"
+        	    <<"  *         *         *     \n"
+        	    <<"    * *     *     * *         \n"
+	            <<"        * * * * *                 \n";
+	}
+	
+	else if(shape==2){
+	    cout<<"* * * * * * * * * * * * *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"
+            <<"*                       *\n"          
+            <<"* * * * * * * * * * * * *\n";
+	    }
+	    else if(shape==3){
+            cout << "    *\n" 
+                     << "   * *\n" 
+                     << "  *   *\n" 
+                     << " *     *\n" 
+                     << "* * * * *\n";
+	    }
+	    else if(shape==4){
+	        cout<<"* * * * * * * * * * * * * * * * * * * * * * * * \n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"*                                             *\n"
+            <<"* * * * * * * * * * * * * * * * * * * * * * * * \n"; 
+	    }
+	    
+	    else{
+	        cout<<"ERROR!!!"<<endl;
+	        
+	    }
+	}
+}
